@@ -48,7 +48,7 @@ const server = serve({
       const randomIndex = Math.floor(Math.random() * drawings.length);
       const drawing = drawings[randomIndex];
       const imageFile = new URL(
-        `./assets/DrawingsImages/${drawing.name}.png`,
+        `../images/${drawing.name}.png`,
         import.meta.url,
       );
       const imageBuffer = await Bun.file(imageFile).arrayBuffer();

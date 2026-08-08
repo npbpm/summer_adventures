@@ -159,7 +159,7 @@ export function ScratchCard({
           <div className="text-sm uppercase tracking-[0.3em] text-pink-800/80">
             Scratch & Win
           </div>
-          <div className="mx-auto max-w-[80%] text-lg font-semibold leading-snug text-slate-900">
+          <div className="mx-auto max-w-[80%] text-lg font-semibold leading-snug text-slate-900 overflow-scroll">
             {textLabel}
           </div>
           <div className="text-xs text-slate-500">
