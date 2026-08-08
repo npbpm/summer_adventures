@@ -68,6 +68,7 @@ export default function ChillActivity({}: ActivityPageProps) {
             text={selectedMessage}
             onReveal={(value) => setRevealedMessage(value)}
             width={250}
+            height={350}
             className="mx-auto h-auto w-auto"
           />
 

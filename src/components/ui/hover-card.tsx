@@ -3,17 +3,54 @@ import { HoverCard as HoverCardPrimitive } from "radix-ui";
 
 import { cn } from "@/lib/utils";
 
+const HoverCardContext = React.createContext<{
+  setOpen(open: boolean): void;
+} | null>(null);
+
 function HoverCard({
   ...props
 }: React.ComponentProps<typeof HoverCardPrimitive.Root>) {
-  return <HoverCardPrimitive.Root data-slot="hover-card" {...props} />;
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <HoverCardContext.Provider value={{ setOpen }}>
+      <HoverCardPrimitive.Root
+        data-slot="hover-card"
+        open={open}
+        onOpenChange={setOpen}
+        {...props}
+      />
+    </HoverCardContext.Provider>
+  );
 }
 
 function HoverCardTrigger({
+  onFocus,
+  onPointerDown,
+  onKeyDown,
   ...props
 }: React.ComponentProps<typeof HoverCardPrimitive.Trigger>) {
+  const context = React.useContext(HoverCardContext);
+
   return (
-    <HoverCardPrimitive.Trigger data-slot="hover-card-trigger" {...props} />
+    <HoverCardPrimitive.Trigger
+      data-slot="hover-card-trigger"
+      onFocus={(event) => {
+        onFocus?.(event);
+        context?.setOpen(true);
+      }}
+      onPointerDown={(event) => {
+        onPointerDown?.(event);
+        context?.setOpen(true);
+      }}
+      onKeyDown={(event) => {
+        onKeyDown?.(event);
+        if (event.key === "Enter" || event.key === " ") {
+          context?.setOpen(true);
+        }
+      }}
+      {...props}
+    />
   );
 }
 

@@ -25,11 +25,11 @@ function Home() {
       <div className="flex justify-center items-center gap-8 translate-y-9">
         <HoverCard openDelay={10} closeDelay={100}>
           <HoverCardTrigger asChild>
-            <div className="group inline-flex rounded-3xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]">
+            <div className="group inline-flex rounded-3xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] focus:-translate-y-1 focus:scale-[1.02] active:-translate-y-1 active:scale-[1.02]">
               <img
                 src={cat}
                 alt="Cat Logo"
-                className="h-36 w-auto rounded-3xl transition-all duration-300 group-hover:-rotate-3 group-hover:scale-105"
+                className="h-36 w-auto rounded-3xl transition-all duration-300 group-hover:-rotate-3 group-hover:scale-105 group-focus:-rotate-3 group-focus:scale-105 group-active:-rotate-3 group-active:scale-105"
               />
             </div>
           </HoverCardTrigger>
