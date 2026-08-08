@@ -2,20 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import AbstractBird from "../../assets/DrawingsImages/abstract_bird.png";
-import AirBalloon from "../../assets/DrawingsImages/air_balloon.png";
-import BalletSlippers from "../../assets/DrawingsImages/ballet_slippers.png";
-import Bike from "../../assets/DrawingsImages/bike.png";
-import Butterflies from "../../assets/DrawingsImages/butterflies.png";
-import CatInBlanket from "../../assets/DrawingsImages/cat_in_blanket.png";
-import CofeeCups from "../../assets/DrawingsImages/cofee_cups.png";
-import Envelope from "../../assets/DrawingsImages/envelope.png";
-import MinimalisticFlowers from "../../assets/DrawingsImages/minimalistic_flowers.png";
-import NightSkyDreamscape from "../../assets/DrawingsImages/night_sky_dreamscape.png";
-import RoseBud from "../../assets/DrawingsImages/rose_bud.png";
-import SleepingFox from "../../assets/DrawingsImages/sleeping_fox.png";
-import Terrarium from "../../assets/DrawingsImages/terrarium.png";
-import Tree from "../../assets/DrawingsImages/tree.png";
 
 interface DrawingSuggestion {
   name: string;
@@ -27,84 +13,6 @@ interface DrawingResponse extends DrawingSuggestion {
 }
 
 interface ActivityPageProps {}
-
-const DrawingsInfo = [
-  {
-    name: "cat_in_blanket",
-    description:
-      "A whimsical, minimalist cat outlined in soft pastel lavenders, comfortably wrapped in a cosy striped blanket, surrounded by floating hearts and a subtle botanical flourish.",
-  },
-  {
-    name: "minimalistic_flowers",
-    description:
-      "An elegant, minimal continuous line drawing of three wildflowers and subtle leaves, rendered in a soothing sage green pastel, symbolizing the growth and resilience you see in her studies.",
-  },
-  {
-    name: "night_sky_dreamscape",
-    description:
-      "A dreamy, abstract sky landscape featuring soft pastel clouds and a gentle crescent moon, with small, shimmering stars. The entire scene uses the same soft pastel palette and calming, hand-drawn texture established in the other ideas.",
-  },
-  {
-    name: "abstract_bird",
-    description:
-      "A simple, abstract silhouette of a bird in flight, rendered in a single, flowing pastel blue line against a plain cream background.",
-  },
-  {
-    name: "cofee_cups",
-    description:
-      "A pair of minimalist, hand-drawn coffee cups, linked by a subtle heart shape, illustrated in warm, pastel peach tones on textured paper.",
-  },
-  {
-    name: "terrarium",
-    description:
-      "A stylized, geometric terrarium, visualized as an open glass droplet. Inside, simple pastel succulents are nestled with minimal botanical lines, maintaining the clean, feminine aesthetic.",
-  },
-  {
-    name: "ballet_slippers",
-    description:
-      "A pair of stylized, simple ballet slippers, tied together by a flowing pastel pink ribbon, rendered as continuous line art with soft, grainy pastel textures.",
-  },
-  {
-    name: "rose_bud",
-    description:
-      "A simple, beautiful line drawing of a single rose bud, its stem curving into a gentle heart shape, using soft pastel pink and sage green.",
-  },
-  {
-    name: "butterflies",
-    description:
-      "A cluster of abstract, minimalist butterflies, their wings suggested by soft pastel watercolor washes in lavender, mint, and sky blue.",
-  },
-  {
-    name: "envelope",
-    description:
-      "A tiny, minimalist envelope, from which a continuous line drawing of a leafy vine and tiny hearts grows.",
-  },
-  {
-    name: "sleeping_fox",
-    description:
-      "A stylized, single, flowing line drawing of a sleeping fox, curled into a perfect circle, using soft pastel orange and cream.",
-  },
-  {
-    name: "feather",
-    description:
-      "A single, beautiful pastel feather, illustrated with very fine lines and a grainy texture.",
-  },
-  {
-    name: "bike",
-    description:
-      "A minimalist outline of a bike, its basket overflowing with simple, continuous line flowers in pastel pink, yellow, and blue.",
-  },
-  {
-    name: "air_balloon",
-    description:
-      "A minimalist outline of a hot air balloon, its basket trailing a single, flowing pastel ribbon and a small, stylized heart.",
-  },
-  {
-    name: "tree",
-    description:
-      "A small, minimal, abstract tree, its branches forming a circle, with tiny, stylized leaves in soft pastel greens and yellows.",
-  },
-];
 
 export default function ArtActivity({}: ActivityPageProps) {
   const [drawingResponse, setDrawingResponse] =
@@ -134,30 +42,13 @@ export default function ArtActivity({}: ActivityPageProps) {
     }, 1000);
 
     try {
-      const randomIndex = Math.floor(Math.random() * DrawingsInfo.length);
-      const drawing = DrawingsInfo[randomIndex];
+      const response = await fetch("/api/drawing/random");
+      if (!response.ok) {
+        throw new Error("Failed to load a random drawing.");
+      }
 
-      const imageMap: Record<string, string> = {
-        abstract_bird: AbstractBird,
-        air_balloon: AirBalloon,
-        ballet_slippers: BalletSlippers,
-        bike: Bike,
-        butterflies: Butterflies,
-        cat_in_blanket: CatInBlanket,
-        cofee_cups: CofeeCups,
-        envelope: Envelope,
-        minimalistic_flowers: MinimalisticFlowers,
-        night_sky_dreamscape: NightSkyDreamscape,
-        rose_bud: RoseBud,
-        sleeping_fox: SleepingFox,
-        terrarium: Terrarium,
-        tree: Tree,
-      };
-
-      setDrawingResponse({
-        ...drawing!,
-        image: imageMap[drawing!.name],
-      });
+      const data = (await response.json()) as DrawingResponse;
+      setDrawingResponse(data);
     } catch (err) {
       setError("Could not load a drawing right now. Please try again.");
     } finally {

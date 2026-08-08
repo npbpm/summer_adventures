@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import standingCat from "../assets/svgs/standing-cat.svg";
+import stadingCat from "../assets/svgs/standing-cat.svg";
 import { Fragment } from "react/jsx-runtime";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 import { Button } from "./ui/button";
@@ -44,7 +44,7 @@ function ActivityWrapper({ catText }: ActivityWrapperProps) {
           <HoverCardTrigger asChild>
             <div className="group inline-flex rounded-3xl transition-all duration-300 hover:-translate-y-1">
               <img
-                src={standingCat}
+                src={stadingCat}
                 alt="Cat Logo"
                 className="h-26 w-auto rounded-3xl transition-all duration-300"
               />
