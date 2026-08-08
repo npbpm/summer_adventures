@@ -1,0 +1,48 @@
+<svg id="Cat" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70">
+  <title>Cute Cat Logo</title>
+  <!-- Head -->
+  <g id="Head">
+    <ellipse cx="40" cy="36" rx="28" ry="26" fill="#ffefdb" stroke="#e6c9a1" stroke-width="1.5"/>
+    <!-- Ears -->
+    <path d="M16 24 L10 6 L28 20 Z" fill="#ffefdb" stroke="#e6c9a1" stroke-width="1.2"/>
+    <path d="M64 24 L70 6 L52 20 Z" fill="#ffefdb" stroke="#e6c9a1" stroke-width="1.2"/>
+    <!-- Inner ear shadows -->
+    <path d="M18 22 L14 10 L26 18 Z" fill="#ffd7c2" opacity="0.9"/>
+    <path d="M62 22 L66 10 L54 18 Z" fill="#ffd7c2" opacity="0.9"/>
+  </g>
+
+  <!-- Face -->
+  <g id="Face">
+    <!-- Eyes -->
+    <ellipse cx="28" cy="36" rx="5" ry="6" fill="#fff"/>
+    <ellipse cx="52" cy="36" rx="5" ry="6" fill="#fff"/>
+    <circle cx="28" cy="36" r="2.2" fill="#3b2f2f"/>
+    <circle cx="52" cy="36" r="2.2" fill="#3b2f2f"/>
+    <circle cx="31" cy="34" r="0.9" fill="#fff" opacity="0.9"/>
+    <circle cx="55" cy="34" r="0.9" fill="#fff" opacity="0.9"/>
+
+    <!-- Nose -->
+    <path d="M40 40 q2 3 0 3 q-2 0 0-3 z" fill="#ff9aa2" stroke="#e86f7a" stroke-width="0.6"/>
+
+    <!-- Mouth -->
+    <path d="M40 43 q-4 4 -8 2" stroke="#b44" stroke-width="1" fill="none" stroke-linecap="round"/>
+    <path d="M40 43 q4 4 8 2" stroke="#b44" stroke-width="1" fill="none" stroke-linecap="round"/>
+
+    <!-- Whiskers -->
+    <path d="M18 40 h12" stroke="#b89" stroke-width="1" opacity="0.9"/>
+    <path d="M18 44 h12" stroke="#b89" stroke-width="1" opacity="0.8"/>
+    <path d="M62 40 h-12" stroke="#b89" stroke-width="1" opacity="0.9"/>
+    <path d="M62 44 h-12" stroke="#b89" stroke-width="1" opacity="0.8"/>
+
+    <!-- Blush -->
+    <ellipse cx="22" cy="44" rx="4" ry="2.2" fill="#ffccd7" opacity="0.9"/>
+    <ellipse cx="58" cy="44" rx="4" ry="2.2" fill="#ffccd7" opacity="0.9"/>
+  </g>
+
+  <!-- Tail (subtle background detail) -->
+  <path d="M68 48 q8 6 4 16 q-6 8 -14 4" fill="#ffd" stroke="#e6c9a1" stroke-width="1" opacity="0.6"/>
+
+  <!-- Light shine -->
+  <ellipse cx="50" cy="20" rx="6" ry="3" fill="#fff" opacity="0.12"/>
+
+</svg>
