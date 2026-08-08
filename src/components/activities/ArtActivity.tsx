@@ -2,20 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import AbstractBird from "../../assets/DrawingsImages/abstract_bird.png";
-import AirBalloon from "../../assets/DrawingsImages/air_balloon.png";
-import BalletSlippers from "../../assets/DrawingsImages/ballet_slippers.png";
-import Bike from "../../assets/DrawingsImages/bike.png";
-import Butterflies from "../../assets/DrawingsImages/butterflies.png";
-import CatInBlanket from "../../assets/DrawingsImages/cat_in_blanket.png";
-import CofeeCups from "../../assets/DrawingsImages/cofee_cups.png";
-import Envelope from "../../assets/DrawingsImages/envelope.png";
-import MinimalisticFlowers from "../../assets/DrawingsImages/minimalistic_flowers.png";
-import NightSkyDreamscape from "../../assets/DrawingsImages/night_sky_dreamscape.png";
-import RoseBud from "../../assets/DrawingsImages/rose_bud.png";
-import SleepingFox from "../../assets/DrawingsImages/sleeping_fox.png";
-import Terrarium from "../../assets/DrawingsImages/terrarium.png";
-import Tree from "../../assets/DrawingsImages/tree.png";
 
 interface DrawingSuggestion {
   name: string;
@@ -122,6 +108,8 @@ export default function ArtActivity({}: ActivityPageProps) {
     };
   }, []);
 
+  // drawingResponse is used directly for the <img> src; no extra effect needed
+
   const showRandomDrawing = async () => {
     if (isLoading || isDebounced) return;
 
@@ -137,26 +125,16 @@ export default function ArtActivity({}: ActivityPageProps) {
       const randomIndex = Math.floor(Math.random() * DrawingsInfo.length);
       const drawing = DrawingsInfo[randomIndex];
 
-      const imageMap: Record<string, string> = {
-        abstract_bird: AbstractBird,
-        air_balloon: AirBalloon,
-        ballet_slippers: BalletSlippers,
-        bike: Bike,
-        butterflies: Butterflies,
-        cat_in_blanket: CatInBlanket,
-        cofee_cups: CofeeCups,
-        envelope: Envelope,
-        minimalistic_flowers: MinimalisticFlowers,
-        night_sky_dreamscape: NightSkyDreamscape,
-        rose_bud: RoseBud,
-        sleeping_fox: SleepingFox,
-        terrarium: Terrarium,
-        tree: Tree,
-      };
+      // Build URL to the image in the final `dist/images` folder. The build
+      // script copies original files into `dist/images` to avoid hashed names.
+      const imageUrl = new URL(
+        `/images/${drawing!.name}.png`,
+        import.meta.url,
+      ).toString();
 
       setDrawingResponse({
         ...drawing!,
-        image: imageMap[drawing!.name],
+        image: imageUrl,
       });
     } catch (err) {
       setError("Could not load a drawing right now. Please try again.");
